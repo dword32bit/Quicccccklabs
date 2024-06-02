@@ -5,8 +5,8 @@
 
 # Create the instance with the necessary metadata and tags
 gcloud compute instances create lamp-1-vm \
-    --project=$DEVSHELL_PROJECT_ID \
-    --zone=$ZONE \
+    --project=qwiklabs-gcp-03-5823eee54aa0 \
+    --zone=us-east1-d \
     --machine-type=e2-small \
     --network-interface=network-tier=PREMIUM,stack-type=IPV4_ONLY,subnet=default \
     --metadata=enable-oslogin=true \
@@ -22,7 +22,7 @@ gcloud compute instances create lamp-1-vm \
 
 # Create firewall rule to allow incoming HTTP traffic on port 80
 gcloud compute firewall-rules create allow-http \
-    --project=$DEVSHELL_PROJECT_ID \
+    --project=qwiklabs-gcp-03-5823eee54aa0 \
     --direction=INGRESS \
     --priority=1000 \
     --network=default \
@@ -33,10 +33,10 @@ gcloud compute firewall-rules create allow-http \
 
 
 # Generate SSH keys
-gcloud compute config-ssh --project "$DEVSHELL_PROJECT_ID" --quiet
+gcloud compute config-ssh --project "qwiklabs-gcp-03-5823eee54aa0" --quiet
 
 # SSH into the instance and run commands
-gcloud compute ssh lamp-1-vm --project "$DEVSHELL_PROJECT_ID" --zone $ZONE --command "sudo apt-get update && sudo apt-get install -y apache2 php7.0 && sudo service apache2 restart"
+gcloud compute ssh lamp-1-vm --project "qwiklabs-gcp-03-5823eee54aa0" --zone us-east1-d --command "sudo apt-get update && sudo apt-get install -y apache2 php7.0 && sudo service apache2 restart"
 
 
 
